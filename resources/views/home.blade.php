@@ -366,7 +366,7 @@
         var interval = 2000;
 
 
-        setTimeout(loadMsg, 5000);
+        setTimeout(loadMsg(), 5000);
 
         function doAjax() {
             // loadMsg()
