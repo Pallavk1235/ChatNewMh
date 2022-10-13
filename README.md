@@ -12,7 +12,7 @@ Completing the project is important and is for us to see your own coding style, 
 Fire commands in terminal :
 #####  Step : 1
 ```
-git clone https://github.com/Pallavk1235/ChatAPP.git
+git clone https://github.com/Pallavk1235/ChatNewMh.git
 ```
 ##### Step : 2
 ```
