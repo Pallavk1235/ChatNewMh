@@ -137,75 +137,75 @@
                 }
             })
 
-            $(document).on("click", ".delete_msg", function() {
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                var my_name = $("#active_chat_user_name").val();
-                var msg_id = $(this).attr('data-id');
-                var from_id = $(this).attr('data-from');
-                var to_id = $(this).attr('data-to');
-                data = {
-                    _token: CSRF_TOKEN,
-                    message_id: msg_id
-                }
-                $.ajax({
-                    url: '/api/chats/deleteMsg',
-                    method: 'POST',
-                    data: data,
-                    dataType: 'JSON',
-                    success: function(data_success) {
-                        console.log(data_success);
-                        var data = {
-                            _token: CSRF_TOKEN,
-                            from_user_id: to_id,
-                            my_user_id: from_id
-                        }
-                        $('.direct-chat-messages').html("");
+            // $(document).on("click", ".delete_msg", function() {
+            //     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+            //     var my_name = $("#active_chat_user_name").val();
+            //     var msg_id = $(this).attr('data-id');
+            //     var from_id = $(this).attr('data-from');
+            //     var to_id = $(this).attr('data-to');
+            //     data = {
+            //         _token: CSRF_TOKEN,
+            //         message_id: msg_id
+            //     }
+            //     $.ajax({
+            //         url: '/api/chats/deleteMsg',
+            //         method: 'POST',
+            //         data: data,
+            //         dataType: 'JSON',
+            //         success: function(data_success) {
+            //             console.log(data_success);
+            //             var data = {
+            //                 _token: CSRF_TOKEN,
+            //                 from_user_id: to_id,
+            //                 my_user_id: from_id
+            //             }
+            //             $('.direct-chat-messages').html("");
                         
-                        $.ajax({
-                            url: '/api/chats/loadAllMsg',
-                            method: 'POST',
-                            data: data,
-                            dataType: 'JSON',
-                            success: function(seen_message) {
-                                newMessage(data)
-                                console.log("Hello", from_id);
-                                for (var i = 0; i < seen_message
-                                    .length; i++) {
-                                    if (seen_message[i].user_from == from_id) {
-                                        var my_msg =
-                                            '<div class="direct-chat-msg right"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
-                                            main_name +
-                                            '</span></a><span class="direct-chat-timestamp float-left">' +
-                                            seen_message[i].created_at +
-                                            '</span></div><div class="direct-chat-text">' +
-                                            seen_message[i].messages +
-                                            '</div></div><button class="btn btn-danger delete_msg" data-id="' +
-                                            seen_message[i].id +
-                                            '" data-from="' +
-                                            seen_message[i].user_from +
-                                            '" data-to="' +
-                                            seen_message[i].user_to +
-                                            '" style="float: right;margin-top: -45px;"><i class="fas fa-trash"></i></button>';
-                                        $('.direct-chat-messages')
-                                            .append(my_msg);
-                                    } else if (seen_message[i].user_from == to_id) {
-                                        var my_msg =
-                                            '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
-                                            my_name +
-                                            '</span><span class="direct-chat-timestamp float-left">' +
-                                            seen_message[i].created_at +
-                                            '</span></div><div class="direct-chat-text">' +
-                                            seen_message[i].messages +
-                                            '</div></div>';
-                                        $('.direct-chat-messages')
-                                            .append(my_msg);
-                                    }
-                                }
-                            }
-                        })
-                    }
-                })
-            })
+            //             $.ajax({
+            //                 url: '/api/chats/loadAllMsg',
+            //                 method: 'POST',
+            //                 data: data,
+            //                 dataType: 'JSON',
+            //                 success: function(seen_message) {
+            //                     newMessage(data)
+            //                     console.log("Hello", from_id);
+            //                     for (var i = 0; i < seen_message
+            //                         .length; i++) {
+            //                         if (seen_message[i].user_from == from_id) {
+            //                             var my_msg =
+            //                                 '<div class="direct-chat-msg right"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
+            //                                 main_name +
+            //                                 '</span></a><span class="direct-chat-timestamp float-left">' +
+            //                                 seen_message[i].created_at +
+            //                                 '</span></div><div class="direct-chat-text">' +
+            //                                 seen_message[i].messages +
+            //                                 '</div></div><button class="btn btn-danger delete_msg" data-id="' +
+            //                                 seen_message[i].id +
+            //                                 '" data-from="' +
+            //                                 seen_message[i].user_from +
+            //                                 '" data-to="' +
+            //                                 seen_message[i].user_to +
+            //                                 '" style="float: right;margin-top: -45px;"><i class="fas fa-trash"></i></button>';
+            //                             $('.direct-chat-messages')
+            //                                 .append(my_msg);
+            //                         } else if (seen_message[i].user_from == to_id) {
+            //                             var my_msg =
+            //                                 '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
+            //                                 my_name +
+            //                                 '</span><span class="direct-chat-timestamp float-left">' +
+            //                                 seen_message[i].created_at +
+            //                                 '</span></div><div class="direct-chat-text">' +
+            //                                 seen_message[i].messages +
+            //                                 '</div></div>';
+            //                             $('.direct-chat-messages')
+            //                                 .append(my_msg);
+            //                         }
+            //                     }
+            //                 }
+            //             })
+            //         }
+            //     })
+            // })
         }
         
         $('tr#ClickableRow').click(function() {
@@ -223,6 +223,7 @@
             loadMsg()
 
             $(document).on("click", ".delete_msg", function() {
+                $('.direct-chat-messages').html("");
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 var msg_id = $(this).attr('data-id');
                 var from_id = $(this).attr('data-from');
@@ -243,7 +244,6 @@
                             from_user_id: to_id,
                             my_user_id: from_id
                         }
-                        $('.direct-chat-messages').html("");
                         $.ajax({
                             url: '/api/chats/loadAllMsg',
                             method: 'POST',
@@ -299,7 +299,7 @@
                 data: data,
                 dataType: 'JSON',
                 success: function(data_new) {
-                    $('.direct-chat-messages').html("");
+                    // $('.direct-chat-messages').html("");
                     for (var i = 0; i < data_new.length; i++) {
                         var my_msg =
                             '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
