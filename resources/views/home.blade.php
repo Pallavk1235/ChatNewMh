@@ -299,7 +299,7 @@
                 data: data,
                 dataType: 'JSON',
                 success: function(data_new) {
-                    // $('.direct-chat-messages').html("");
+                    $('.direct-chat-messages').html("");
                     for (var i = 0; i < data_new.length; i++) {
                         var my_msg =
                             '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
