@@ -238,54 +238,55 @@
                     data: data,
                     dataType: 'JSON',
                     success: function(data_success) {
-                        console.log(data_success);
+                        // console.log(data_success);
                         var data = {
                             _token: CSRF_TOKEN,
                             from_user_id: to_id,
                             my_user_id: from_id
                         }
-                        $.ajax({
-                            url: '/api/chats/loadAllMsg',
-                            method: 'POST',
-                            data: data,
-                            dataType: 'JSON',
-                            success: function(seen_message) {
-                                console.log("Hello", from_id);
-                                newMessage(data)
-                                for (var i = 0; i < seen_message
-                                    .length; i++) {
-                                    if (seen_message[i].user_from == from_id) {
-                                        var my_msg =
-                                            '<div class="direct-chat-msg right"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
-                                            main_name +
-                                            '</span></a><span class="direct-chat-timestamp float-left">' +
-                                            seen_message[i].created_at +
-                                            '</span></div><div class="direct-chat-text">' +
-                                            seen_message[i].messages +
-                                            '</div></div><button class="btn btn-danger delete_msg" data-id="' +
-                                            seen_message[i].id +
-                                            '" data-from="' +
-                                            seen_message[i].user_from +
-                                            '" data-to="' +
-                                            seen_message[i].user_to +
-                                            '" style="float: right;margin-top: -45px;"><i class="fas fa-trash"></i></button>';
-                                        $('.direct-chat-messages')
-                                            .append(my_msg);
-                                    } else if (seen_message[i].user_from == to_id) {
-                                        var my_msg =
-                                            '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
-                                            my_name +
-                                            '</span><span class="direct-chat-timestamp float-left">' +
-                                            seen_message[i].created_at +
-                                            '</span></div><div class="direct-chat-text">' +
-                                            seen_message[i].messages +
-                                            '</div></div>';
-                                        $('.direct-chat-messages')
-                                            .append(my_msg);
-                                    }
-                                }
-                            }
-                        })
+                        loadMsg()
+                        // $.ajax({
+                        //     url: '/api/chats/loadAllMsg',
+                        //     method: 'POST',
+                        //     data: data,
+                        //     dataType: 'JSON',
+                        //     success: function(seen_message) {
+                        //         console.log("Hello", from_id);
+                        //         newMessage(data)
+                        //         for (var i = 0; i < seen_message
+                        //             .length; i++) {
+                        //             if (seen_message[i].user_from == from_id) {
+                        //                 var my_msg =
+                        //                     '<div class="direct-chat-msg right"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
+                        //                     main_name +
+                        //                     '</span></a><span class="direct-chat-timestamp float-left">' +
+                        //                     seen_message[i].created_at +
+                        //                     '</span></div><div class="direct-chat-text">' +
+                        //                     seen_message[i].messages +
+                        //                     '</div></div><button class="btn btn-danger delete_msg" data-id="' +
+                        //                     seen_message[i].id +
+                        //                     '" data-from="' +
+                        //                     seen_message[i].user_from +
+                        //                     '" data-to="' +
+                        //                     seen_message[i].user_to +
+                        //                     '" style="float: right;margin-top: -45px;"><i class="fas fa-trash"></i></button>';
+                        //                 $('.direct-chat-messages')
+                        //                     .append(my_msg);
+                        //             } else if (seen_message[i].user_from == to_id) {
+                        //                 var my_msg =
+                        //                     '<div class="direct-chat-msg"  style="margin-right:45px;"><div class="direct-chat-infos clearfix"><span class="direct-chat-name float-right">' +
+                        //                     my_name +
+                        //                     '</span><span class="direct-chat-timestamp float-left">' +
+                        //                     seen_message[i].created_at +
+                        //                     '</span></div><div class="direct-chat-text">' +
+                        //                     seen_message[i].messages +
+                        //                     '</div></div>';
+                        //                 $('.direct-chat-messages')
+                        //                     .append(my_msg);
+                        //             }
+                        //         }
+                        //     }
+                        // })
                     }
                 })
             })
@@ -365,8 +366,8 @@
 
         var interval = 2000;
 
-
-        setTimeout(loadMsg(), 5000);
+        
+        // setTimeout(loadMsg(), 5000);
 
         function doAjax() {
             // loadMsg()
