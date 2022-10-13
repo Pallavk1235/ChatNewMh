@@ -365,7 +365,11 @@
 
         var interval = 2000;
 
+
+        setTimeout(loadMsg, 5000);
+
         function doAjax() {
+            // loadMsg()
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             var from_to_user_id = $('#from_user_id').val();
 
